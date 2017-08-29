@@ -19,9 +19,7 @@ $(document).ready(function() {
     // console.log(dancerMakerFunctionName);
     // get the maker function for the kind of dancer we're supposed to make
   
-    var dancerMakerFunction = {
-      makeBlinkyDancer: makeBlinkyDancer
-    };
+    var dancerMakerFunction = window[dancerMakerFunctionName];
     // make a dancer with a random position
 
     // var dancer = dancerMakerFunction(
@@ -29,14 +27,15 @@ $(document).ready(function() {
     //   $("body").width() * Math.random(),
     //   Math.random() * 1000
     // );
-    var dancer = new dancerMakerFunction[dancerMakerFunctionName](
-      $('body').height() * Math.random(),
-      $('body').width() * Math.random(),
+    var plusMinus = function() {
+      return Math.random() > 0.5 ? 1 : -1;
+    };
+    var dancer = new dancerMakerFunction (
+      plusMinus() * Math.random() * 285 + 440,
+      plusMinus() * Math.random() * 400 + $('body').width() / 2,
       Math.random() * 1000
     );
 
-    dancer.setPosition();
-    dancer.step();
     $('body').append(dancer.$node);
   });
 });

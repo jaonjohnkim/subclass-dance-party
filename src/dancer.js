@@ -63,10 +63,10 @@ makeDancer.prototype.step = function () {
     context.step();
   }, context.timeBetweenSteps);
 };
-makeDancer.prototype.setPosition = function () {
+makeDancer.prototype.setPosition = function (t, l) {
   var styleSettings = {
-    top: this.top,
-    left: this.left
+    top: t,
+    left: l
   };
   this.$node.css(styleSettings);
 };
