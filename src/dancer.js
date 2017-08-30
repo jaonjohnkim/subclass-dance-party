@@ -55,14 +55,12 @@ var makeDancer = function (top, left, timeBetweenSteps) {
   this.top = top;
   this.left = left;
   this.timeBetweenSteps = timeBetweenSteps;
-
+  this.step();
 };
 
 makeDancer.prototype.step = function () {
   var context = this;
-  setTimeout(function () {
-    context.step();
-  }, context.timeBetweenSteps);
+  setTimeout(context.step.bind(context), context.timeBetweenSteps);
 };
 makeDancer.prototype.setPosition = function (t, l) {
   var styleSettings = {
