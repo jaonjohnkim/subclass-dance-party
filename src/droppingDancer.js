@@ -1,5 +1,5 @@
 var makeDroppingDancer = function (top, left, time) {
-  top = 180;
+  top = 200;
   time = 20;
   makeDancer.call(this, 0, left, time);
   this.$node = $('<span class = "dancer dropping"></span>');
@@ -21,7 +21,7 @@ makeDroppingDancer.prototype.step = function () {
   if (this.top < 700) {
     this.top += this.fallRate;
   } else {
-    this.top = 180;
+    this.top = 200;
     this.fallRate = 0;
   }
   

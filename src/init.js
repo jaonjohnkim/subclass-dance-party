@@ -1,6 +1,8 @@
 $(document).ready(function() {
   window.dancers = [];
-
+  var plusMinus = function() {
+    return Math.random() > 0.5 ? 1 : -1;
+  };
   $('.addDancerButton').on('click', function(event) {
     /* This function sets up the click handlers for the create-dancer
      * buttons on dancefloor.html. You should only need to make one small change to it.
@@ -27,16 +29,31 @@ $(document).ready(function() {
     //   $("body").width() * Math.random(),
     //   Math.random() * 1000
     // );
-    var plusMinus = function() {
-      return Math.random() > 0.5 ? 1 : -1;
-    };
+    
     var dancer = new dancerMakerFunction (
-      plusMinus() * Math.random() * 285 + 440,
+      plusMinus() * Math.random() * 225 + 450,
       plusMinus() * Math.random() * 400 + $('body').width() / 2,
       Math.random() * 1000
     );
 
     $('body').append(dancer.$node);
+    window.dancers.push(dancer);
+  });
+
+  $('.lineUp').on('click', function(event) {
+    window.dancers.forEach(function(node, i, allDancers) {
+      node.top = 400;
+      node.left = i * 700 / allDancers.length + 250;
+      node.$node.animate({top: node.top, left: node.left});
+    });
+  });
+  
+  $('.scramble').on('click', function(event) {
+    window.dancers.forEach(function(node, i, allDancers) {
+      node.top = plusMinus() * Math.random() * 225 + 450;
+      node.left = plusMinus() * Math.random() * 400 + $('body').width() / 2;
+      node.$node.animate({top: node.top, left: node.left});
+    });
   });
 });
 
